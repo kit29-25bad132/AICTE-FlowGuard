@@ -1,111 +1,61 @@
-'use client';
-import React, { useState, useEffect } from 'react';
-import { flowStore } from '@/lib/store';
-import LoginScreen from '@/components/auth/LoginScreen';
-import Shell from '@/components/layout/Shell';
-import BureauDashboard from '@/components/dashboard/BureauDashboard';
-import RegionalDashboard from '@/components/dashboard/RegionalDashboard';
-import InstitutionDashboard from '@/components/dashboard/InstitutionDashboard';
-import ApplicationList from '@/components/applications/ApplicationList';
-import ApplicationDetail from '@/components/applications/ApplicationDetail';
-import EvcClusterMap from '@/components/evc/EvcClusterMap';
-import EscalationCenterView from '@/components/accountability/EscalationCenterView';
-import AuditLedgerView from '@/components/accountability/AuditLedgerView';
-import DelayCostView from '@/components/intelligence/DelayCostView';
-import PendencyMap from '@/components/intelligence/PendencyMap';
-import BottleneckForecastView from '@/components/intelligence/BottleneckForecastView';
-import ComplianceGenomeView from '@/components/compliance/ComplianceGenomeView';
-import WorkflowStudioView from '@/components/admin/WorkflowStudioView';
+import type { Metadata } from 'next';
+import React from 'react';
+import SiteHeader from '@/components/marketing/SiteHeader';
+import SiteFooter from '@/components/marketing/SiteFooter';
+import Hero from '@/components/marketing/Hero';
+import {
+  AboutSection,
+  FinalCta,
+  ImpactSection,
+  ProblemSection,
+  ValueStrip,
+} from '@/components/marketing/Sections';
+import Capabilities from '@/components/marketing/Capabilities';
+import Workflow from '@/components/marketing/Workflow';
+import Intelligence from '@/components/marketing/Intelligence';
+import Roles from '@/components/marketing/Roles';
+import Faq from '@/components/marketing/Faq';
 
-export default function Page() {
-  const [storeState, setStoreState] = useState(flowStore.getState());
-  const [isAuthenticated, setIsAuthenticated] = useState(true);
-  const [currentTab, setCurrentTab] = useState('dashboard');
-  const [selectedAppId, setSelectedAppId] = useState<string | null>(null);
+export const metadata: Metadata = {
+  title: 'AICTE FlowGuard — Regulatory Workflow & Accountability Platform',
+  description:
+    'Making regulatory approvals transparent, accountable, and time-bound. One connected platform for approval workflows, compliance, EVC inspections, SLA intelligence, and audit accountability.',
+};
 
-  useEffect(() => {
-    const unsub = flowStore.subscribe(() => {
-      setStoreState(flowStore.getState());
-    });
-    return unsub;
-  }, []);
+// The hero preview renders the current operating date, so keep this route request-rendered.
+export const dynamic = 'force-dynamic';
 
-  const { currentUser } = storeState;
-
-  const handleLoginSuccess = () => {
-    setIsAuthenticated(true);
-    if (storeState.currentUser.role === 'INSTITUTION') {
-      setCurrentTab('institution_portal');
-    } else {
-      setCurrentTab('dashboard');
-    }
-  };
-
-  const handleOpenAppDetail = (appId: string) => {
-    setSelectedAppId(appId);
-    setCurrentTab('app_detail');
-  };
-
-  if (!isAuthenticated) {
-    return <LoginScreen onLoginSuccess={handleLoginSuccess} />;
-  }
-
-  const renderContent = () => {
-    if (selectedAppId && currentTab === 'app_detail') {
-      return (
-        <ApplicationDetail 
-          appId={selectedAppId} 
-          onBack={() => {
-            setSelectedAppId(null);
-            setCurrentTab('applications');
-          }} 
-        />
-      );
-    }
-
-    switch (currentTab) {
-      case 'dashboard':
-        if (currentUser.role === 'REGIONAL_OFFICER') {
-          return <RegionalDashboard onNavigate={setCurrentTab} onOpenAppDetail={handleOpenAppDetail} />;
-        }
-        return <BureauDashboard onNavigate={setCurrentTab} onOpenAppDetail={handleOpenAppDetail} />;
-      case 'institution_portal':
-        return <InstitutionDashboard onOpenAppDetail={handleOpenAppDetail} />;
-      case 'applications':
-        return <ApplicationList onOpenAppDetail={handleOpenAppDetail} />;
-      case 'evc_scheduling':
-        return <EvcClusterMap />;
-      case 'compliance_genome':
-        return <ComplianceGenomeView />;
-      case 'escalation_center':
-        return <EscalationCenterView onOpenAppDetail={handleOpenAppDetail} />;
-      case 'risk_registry':
-      case 'audit_ledger':
-        return <AuditLedgerView />;
-      case 'delay_cost':
-        return <DelayCostView />;
-      case 'pendency_map':
-        return <PendencyMap />;
-      case 'bottleneck_forecast':
-        return <BottleneckForecastView />;
-      case 'workflow_config':
-        return <WorkflowStudioView />;
-      default:
-        return <BureauDashboard onNavigate={setCurrentTab} onOpenAppDetail={handleOpenAppDetail} />;
-    }
-  };
+export default function HomePage() {
+  const today = new Intl.DateTimeFormat('en-GB', {
+    weekday: 'long',
+    day: '2-digit',
+    month: 'long',
+    year: 'numeric',
+  }).format(new Date());
 
   return (
-    <Shell
-      currentTab={currentTab}
-      onSelectTab={tab => {
-        setSelectedAppId(null);
-        setCurrentTab(tab);
-      }}
-      onLogout={() => setIsAuthenticated(false)}
-      onOpenAppDetail={handleOpenAppDetail}
-    >
-      {renderContent()}
-    </Shell>
+    <div className="min-h-screen bg-white">
+      <a
+        href="#main-content"
+        className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-3 focus:z-[60] focus:rounded-sm focus:bg-navy-900 focus:px-3 focus:py-2 focus:text-xs focus:font-semibold focus:text-white"
+      >
+        Skip to content
+      </a>
+      <SiteHeader />
+      <main id="main-content">
+        <Hero today={today} />
+        <ValueStrip />
+        <ProblemSection />
+        <Capabilities />
+        <Workflow />
+        <Intelligence />
+        <Roles />
+        <ImpactSection />
+        <Faq />
+        <AboutSection />
+        <FinalCta />
+      </main>
+      <SiteFooter />
+    </div>
   );
 }

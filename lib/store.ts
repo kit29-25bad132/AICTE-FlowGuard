@@ -3,6 +3,7 @@ import {
   DocumentRecord, EscalationRecord, AuditLogItem, PrecedentCase, 
   LegalCase, SystemNotification, Role 
 } from '@/types';
+import { DEMO_ACCOUNTS } from '@/lib/demo-accounts';
 
 // Simple SHA-256 mock helper for demo cryptographic audit ledger
 export function mockSha256(str: string): string {
@@ -16,15 +17,16 @@ export function mockSha256(str: string): string {
   return `0x${hex}a9f4c8b21e7d30f${hex}`;
 }
 
-export const DEMO_USERS: User[] = [
-  { id: 'usr-1', name: 'Dr. Rameshwar Rao', email: 'bureau.head@aicte-india.org', role: 'BUREAU_HEAD', avatar: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150' },
-  { id: 'usr-2', name: 'Ananya Sharma', email: 'regional.officer@aicte-india.org', role: 'REGIONAL_OFFICER', region: 'Southern Region (Chennai)', avatar: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=150' },
-  { id: 'usr-3', name: 'Prof. V. K. Subramanian', email: 'admin@aicte-india.org', role: 'ADMIN', avatar: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=150' },
-  { id: 'usr-4', name: 'Capt. Rajesh Nair', email: 'evc.member@aicte-india.org', role: 'EVC_MEMBER', avatar: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=150' },
-  { id: 'usr-5', name: 'Justice (Retd.) B. N. Srikrishna', email: 'competent.authority@aicte-india.org', role: 'COMPETENT_AUTHORITY', avatar: 'https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=150' },
-  { id: 'usr-6', name: 'Principal, Sri Venkateswara Eng College', email: 'svec.inst@aicte-india.org', role: 'INSTITUTION', institutionId: 'INST-8892', avatar: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=150' },
-  { id: 'usr-7', name: 'Meenakshi Sundaram', email: 'legal.cell@aicte-india.org', role: 'LEGAL_CELL', avatar: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=150' },
-];
+// Derived from the single demo account directory so credentials never drift.
+export const DEMO_USERS: User[] = DEMO_ACCOUNTS.map(account => ({
+  id: account.id,
+  name: account.name,
+  email: account.email,
+  role: account.role,
+  region: account.region,
+  institutionId: account.institutionId,
+  avatar: account.avatar,
+}));
 
 // Seed Institutions
 export const SEED_INSTITUTIONS: Institution[] = [
@@ -494,6 +496,7 @@ export interface AppStoreState {
   legalCases: LegalCase[];
   notifications: SystemNotification[];
   setCurrentUser: (user: User) => void;
+  restoreUser: (user: User) => void;
   updateApplicationStage: (appId: string, stageId: string, status: any, notes?: string) => void;
   revertApplication: (appId: string, clause: string, reason: string) => void;
   acknowledgeEscalation: (escId: string) => void;
@@ -579,6 +582,11 @@ class FlowStore {
       setCurrentUser: (user: User) => {
         this.state.currentUser = user;
         this.logAudit(user.name, user.role, 'USER_LOGIN', 'System Session', `{"user":"${user.name}","role":"${user.role}"}`);
+        this.saveToStorage();
+      },
+      restoreUser: (user: User) => {
+        // Rehydrate the workspace from a verified session without appending a new audit entry.
+        this.state.currentUser = user;
         this.saveToStorage();
       },
       updateApplicationStage: (appId: string, stageId: string, status: any, notes?: string) => {

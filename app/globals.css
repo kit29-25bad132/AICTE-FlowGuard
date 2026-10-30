@@ -1,5 +1,34 @@
 @import "tailwindcss";
 
+@theme {
+  /* Institutional navy scale */
+  --color-navy-950: #071322;
+  --color-navy-900: #0b1c30;
+  --color-navy-800: #142b4a;
+  --color-navy-700: #1e3a63;
+  --color-navy-600: #324768;
+  --color-navy-100: #d3e4fe;
+
+  /* Interactive + surfaces */
+  --color-accent: #2563eb;
+  --color-accent-strong: #1d4ed8;
+  --color-tint: #eff4ff;
+  --color-canvas: #f8f9ff;
+
+  /* Lines + text */
+  --color-line: #e2e8f0;
+  --color-line-strong: #cbd5e1;
+  --color-ink: #0b1c30;
+  --color-body: #475569;
+  --color-muted: #64748b;
+  --color-faint: #94a3b8;
+
+  /* Status */
+  --color-success: #16a36a;
+  --color-warning: #e9a23b;
+  --color-danger: #dc4545;
+}
+
 @layer base {
   body {
     font-family: 'IBM Plex Sans', sans-serif;
@@ -12,8 +41,40 @@
   }
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
+
 .tabular-nums {
   font-variant-numeric: tabular-nums;
+}
+
+/* Section entrance for interactive content swaps */
+@keyframes fg-rise {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.fg-enter {
+  animation: fg-rise 300ms cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .fg-enter {
+    animation: none;
+  }
 }
 
 /* Custom scrollbar for dense tables */
