@@ -1,0 +1,2236 @@
+# MASTER IMPLEMENTATION PROMPT — AICTE FLOWGUARD
+## Build a Fully Functional, Realistic, Production-Style Regulatory Workflow Demonstration Platform
+
+You are acting as a senior product engineer, principal frontend architect, UX strategist, interaction designer, and full-stack implementation engineer.
+
+Your task is to transform the existing AICTE FlowGuard project into a complete, highly functional, realistic regulatory workflow platform suitable for a serious Smart India Hackathon jury demonstration and professional screen recording.
+
+This is NOT a request to create a static UI concept, a landing page, a collection of dashboard screenshots, or a superficial frontend prototype.
+
+**Build an application that behaves like a real regulatory software product.**
+
+Every page, navigation item, button, filter, form, modal, dropdown, table action, chart interaction, workflow transition, notification, and export function must work.
+
+The final result must feel like software developed by a mature enterprise product team—not an automatically generated dashboard template.
+
+---
+
+# 1. PRODUCT IDENTITY AND PURPOSE
+
+Product name: AICTE FlowGuard
+
+Problem Statement ID: 26262
+
+Organization: AICTE Regulation Bureau
+
+Theme: Smart Automation
+
+Core product purpose:
+
+AICTE FlowGuard is an integrated regulatory workflow automation and accountability platform for managing:
+
+- AICTE approval applications.
+- Configurable approval workflows.
+- Regional pendency monitoring.
+- SLA monitoring and breach detection.
+- EVC scheduling and travel optimization.
+- Institutional compliance.
+- Document validity and renewal.
+- Time-bound undertakings.
+- Automated escalation.
+- Deemed Approval Risk Registry.
+- Regulatory precedent intelligence.
+- Cryptographic audit records.
+- Legal reporting and audit packet generation.
+
+The product must communicate one central principle:
+
+"Efficiency is a software feature. Accountability is a constitutional value."
+
+Do not make this a generic college administration dashboard.
+
+It must look and behave like a serious government regulatory operations platform used by officers, regional heads, bureau leadership, institutions, EVC committee members, competent authorities, and legal personnel.
+
+---
+
+# 2. FIRST TASK: UNDERSTAND THE EXISTING PROJECT
+
+Before writing or changing code:
+
+1. Inspect the entire existing repository.
+2. Identify the framework, dependencies, routes, components, layouts, database integration, authentication system, API routes, and existing functionality.
+3. Identify what is already implemented and what is incomplete.
+4. Inspect the current backend/API contracts.
+5. Identify existing design decisions and reusable components.
+6. Check whether the application already has authentication, role-based access, seed data, and persistent storage.
+7. Run the application and inspect existing errors.
+8. Prepare an implementation plan based on the actual repository.
+
+Do not replace functioning code simply because you prefer another implementation.
+
+Do not unnecessarily restructure the project.
+
+Do not introduce a new backend or database when an existing one is working.
+
+Do not invent API endpoints.
+
+Preserve all existing working backend integrations and data structures.
+
+If a required backend capability is missing, implement a controlled demo-mode adapter that provides the same user-facing behavior without pretending that an external service has been connected.
+
+---
+
+# 3. DESIGN DIRECTION — MAKE IT LOOK LIKE A REAL ENTERPRISE PRODUCT
+
+The design must be exceptionally clean, restrained, professional, and information-dense.
+
+The visual reference should be a combination of:
+
+- Mature enterprise operations software.
+- Government regulatory portals.
+- Financial risk monitoring platforms.
+- Modern enterprise SaaS applications.
+- High-quality administrative intelligence systems.
+
+Do not imitate a generic AI-generated SaaS dashboard.
+
+## 3.1 Visual identity
+
+Use a restrained institutional design system.
+
+Suggested palette:
+
+- Primary navy: #142D4E
+- Deep navy: #0D1B2A
+- Secondary blue: #245B91
+- Background: #F5F7FA
+- Main surface: #FFFFFF
+- Primary text: #172B43
+- Secondary text: #64748B
+- Border: #E2E8F0
+- Success: #16835D
+- Warning: #D18A20
+- Danger: #C74444
+- Informational: #3478B9
+
+Use semantic status colors consistently.
+
+Avoid excessive gradients, neon colors, glassmorphism, giant rounded cards, decorative glowing borders, unnecessary shadows, and excessive animation.
+
+The interface must feel designed for actual daily use.
+
+## 3.2 Typography
+
+Use Inter or Geist.
+
+Establish a clear hierarchy:
+
+- Page title: approximately 24–28px.
+- Section headings: 16–19px.
+- Body text: 13–15px.
+- Metadata: 11–12px.
+- Table headers: 11–12px.
+- Important metrics: 28–36px.
+
+Maintain consistent font weights.
+
+Avoid oversized typography that makes an administrative application look like a marketing website.
+
+## 3.3 Layout
+
+Use:
+
+- Fixed or persistent left sidebar.
+- Compact top navigation.
+- Breadcrumb navigation.
+- Page title and contextual description.
+- Main working area.
+- Right-side contextual panels where appropriate.
+- Consistent table layouts.
+- Clear filters and action toolbars.
+
+Use an approximately 260px sidebar on desktop, with a collapsible option.
+
+Maintain a comfortable content width and consistent spacing.
+
+The desktop experience is the priority because the application will be recorded on a laptop for the jury.
+
+It must also remain usable on tablets and mobile screens.
+
+---
+
+# 4. GLOBAL APPLICATION SHELL
+
+Build a consistent application shell.
+
+## Sidebar
+
+Display:
+
+AICTE FlowGuard logo and product name.
+
+Navigation groups:
+
+**OVERVIEW**
+- Executive Dashboard
+- Operational Overview
+
+**APPLICATION OPERATIONS**
+- All Applications
+- My Work Queue
+- Approval Workflows
+- SLA Monitoring
+
+**EVC OPERATIONS**
+- EVC Scheduling
+- Cluster Intelligence
+- EVC Calendar
+
+**INSTITUTIONAL COMPLIANCE**
+- Institutions
+- Compliance Genome
+- Undertakings
+- Document Validity
+
+**INTELLIGENCE**
+- Pendency Intelligence
+- Bottleneck Forecast
+- Delay Cost Analysis
+- Precedent Intelligence
+
+**ACCOUNTABILITY**
+- Escalation Center
+- Deemed Approval Risk
+- Audit Ledger
+- Legal Registry
+- Reports & Exports
+
+**ADMINISTRATION**
+- Workflow Configuration
+- Handbook Rules
+- User Management
+- System Settings
+
+Show only navigation permitted for the current role.
+
+Do not show inaccessible modules as if the user has permission to operate them.
+
+## Top navigation
+
+Include:
+
+- Breadcrumbs.
+- Current page title where appropriate.
+- Global search.
+- Notification bell with unread count.
+- Help or documentation access.
+- Current user avatar.
+- User name.
+- Role label.
+- User menu.
+- Logout.
+
+## Global search
+
+Implement a functional search experience.
+
+Search across available demo records:
+
+- Application IDs.
+- Institution names.
+- AICTE IDs.
+- Districts.
+- Assigned officers.
+- Document types.
+- Escalation records.
+
+Show matching results in a dropdown.
+
+Selecting a result must open its actual detail page.
+
+Do not create a decorative search bar that does nothing.
+
+---
+
+# 5. ROLE-BASED AUTHENTICATION AND USER FLOWS
+
+Implement realistic role-based login and separate user experiences.
+
+The specification defines these roles:
+
+1. ADMIN
+2. REGIONAL_OFFICER
+3. BUREAU_HEAD
+4. EVC_MEMBER
+5. COMPETENT_AUTHORITY
+6. INSTITUTION
+7. LEGAL_CELL
+
+Every role must have its own permissions, navigation, dashboard, available actions, and data visibility.
+
+## 5.1 Login page
+
+Create a professional government enterprise login interface.
+
+Include:
+
+- AICTE FlowGuard identity.
+- Email input.
+- Password input.
+- Show/hide password.
+- Remember session option if supported.
+- Login button.
+- Validation messages.
+- Loading state.
+- Invalid credential feedback.
+- Session handling.
+- Logout.
+- Role-based redirection.
+
+Provide clearly marked demo accounts for the different roles.
+
+The demo login experience should be easy to operate during a presentation.
+
+A role-switching demo utility may be included, but it must be visibly labelled as a demo-only feature and must not bypass actual role permissions.
+
+## 5.2 ADMIN
+
+Admin is responsible for system-wide operations.
+
+Dashboard must show:
+
+- Total applications.
+- Applications by status.
+- Regional workload.
+- SLA breaches.
+- Active escalations.
+- EVC scheduling overview.
+- Compliance alerts.
+- Workflow health.
+- Recent system activity.
+
+Admin can:
+
+- View all applications.
+- Create and configure workflow templates.
+- Manage SLA rules.
+- Register officers.
+- Configure handbook rules.
+- Generate EVC clusters.
+- Schedule EVC visits.
+- View system-wide metrics.
+- Run demo reset and seed utilities if enabled.
+
+## 5.3 REGIONAL_OFFICER
+
+The Regional Officer dashboard must prioritize operational execution.
+
+Display:
+
+- My assigned applications.
+- Pending scrutiny.
+- Applications nearing SLA.
+- Breached applications.
+- Pending undertakings.
+- Document verification queue.
+- Regional compliance heatmap.
+- Escalations awaiting acknowledgement.
+
+The officer must be able to:
+
+- Open an application.
+- Inspect submitted documents.
+- Review deficiencies.
+- Advance a valid workflow stage.
+- Revert an application with a documented reason.
+- Select an APH clause.
+- Acknowledge an escalation.
+- Review precedents.
+- Verify undertaking evidence.
+- View institution compliance history.
+
+Every action must update the corresponding application or record.
+
+## 5.4 BUREAU_HEAD
+
+This is the primary opening screen for the jury demonstration.
+
+The Bureau Head dashboard must emphasize institutional accountability.
+
+Show:
+
+- Total applications: 500.
+- Estimated institutional delay cost: ₹1.4 Cr.
+- Total escalated applications.
+- Applications nearing SLA breach.
+- Regional pendency map.
+- Deemed Approval Risk Registry.
+- Top bottleneck regions.
+- Escalation hierarchy.
+- Compliance risk.
+- Recent high-priority events.
+
+The Bureau Head must be able to:
+
+- Open an application.
+- Inspect its full workflow history.
+- View delay-cost calculations.
+- Review legal exposure.
+- Inspect escalation history.
+- Examine precedent intelligence.
+- Review the audit ledger.
+- Export a complete audit packet.
+
+This dashboard must immediately communicate why FlowGuard is different from an ordinary status-tracking system.
+
+## 5.5 EVC_MEMBER
+
+Create an operational interface specifically for committee members.
+
+Show:
+
+- Assigned EVC visits.
+- Upcoming inspections.
+- Monthly calendar.
+- Institution details.
+- Visit itinerary.
+- Assigned committee members.
+- Scheduling status.
+- Visit completion status.
+
+Actions:
+
+- Open scheduled visit.
+- View institution profile.
+- Confirm availability.
+- Accept or decline a visit.
+- Request rescheduling.
+- Mark visit completed.
+- Add inspection observations.
+- Submit visit outcome.
+
+Every action must persist and update the appropriate scheduling records.
+
+## 5.6 INSTITUTION
+
+The institution portal must be completely separate from internal officer interfaces.
+
+Show only the institution's own information.
+
+Display:
+
+- Application overview.
+- Application status.
+- Current workflow stage.
+- Stage history.
+- Reverted deficiencies.
+- Required documents.
+- Document verification status.
+- Pending undertakings.
+- Upcoming deadlines.
+- Compliance Genome.
+- Notifications.
+- EVC visit information.
+
+Institution actions:
+
+- Create an application draft.
+- Edit permitted draft fields.
+- Submit an application.
+- Upload documents.
+- Replace renewed documents.
+- View hash-match results.
+- Respond to deficiencies.
+- Submit undertaking evidence.
+- Track approval progress.
+- Download available documents.
+
+Institutions must never access another institution's records.
+
+## 5.7 COMPETENT_AUTHORITY
+
+Display:
+
+- High-priority escalations.
+- Cases awaiting intervention.
+- Complete application history.
+- Previous officer actions.
+- Delay-cost impact.
+- Legal risk.
+- Escalation summaries.
+
+Actions:
+
+- Review case.
+- Examine the evidence.
+- Record an administrative direction.
+- Approve an authorized override where supported.
+- Add remarks.
+- Sign off on the decision using the configured authentication flow.
+
+## 5.8 LEGAL_CELL
+
+Display:
+
+- Deemed Approval Risk Registry.
+- Applications exceeding SLA thresholds.
+- Writ petition records.
+- Legal risk patterns.
+- Relevant precedent cases.
+- Court outcome registry.
+- Complete audit history.
+
+Actions:
+
+- Open legal case.
+- Review application evidence.
+- Record writ petition information.
+- Update case outcome.
+- Add legal observations.
+- Export the relevant case dossier.
+
+Do not invent legal conclusions or represent demo data as actual legal advice.
+
+---
+
+# 6. APPLICATION MANAGEMENT — THE CORE WORKFLOW
+
+This is the most important operational module.
+
+Create a fully functional application management experience.
+
+## Application listing
+
+Display a professional data table with:
+
+- Application ID.
+- Institution.
+- Region.
+- Category.
+- Submission date.
+- Current stage.
+- Assigned officer.
+- SLA deadline.
+- Days remaining or overdue.
+- Application status.
+- Risk priority.
+- Available actions.
+
+Implement:
+
+- Search.
+- Filters.
+- Sorting.
+- Pagination.
+- Column visibility.
+- Status filters.
+- Region filters.
+- Category filters.
+- Date range filters.
+- Risk filters.
+- Export filtered results.
+- Reset filters.
+
+Every filter must genuinely change the displayed data.
+
+## Application detail
+
+When the user selects an application, open a detailed operational page.
+
+Include:
+
+1. Application header.
+2. Institution information.
+3. Application metadata.
+4. Current status.
+5. SLA progress.
+6. Stage timeline.
+7. Assigned officer.
+8. Document checklist.
+9. Deficiency information.
+10. Compliance Genome.
+11. EVC information.
+12. Precedent Intelligence panel.
+13. Escalation history.
+14. Audit history.
+15. Available actions.
+
+Use tabs or clearly structured sections.
+
+Do not overload the page with dozens of unrelated cards.
+
+## Workflow progression
+
+Implement an actual state machine.
+
+Possible application states:
+
+- DRAFT
+- SUBMITTED
+- IN_PROGRESS
+- APPROVED
+- REJECTED
+- DOCUMENT_EXPIRED
+
+Stage states:
+
+- PENDING
+- CONDITIONAL_ACTIVE
+- ACTIVE
+- REVERTED
+- CLEARED
+- ESCALATED
+
+A stage must not advance when required prerequisites are missing.
+
+For example:
+
+If a required document is unverified, show:
+
+"Stage progression unavailable."
+
+Then explain exactly what is missing.
+
+The Next Stage button must remain disabled until requirements are satisfied.
+
+When a stage is completed:
+
+- Update its status.
+- Update the next eligible stage.
+- Recalculate SLA information.
+- Update the application timeline.
+- Create an audit event.
+- Generate relevant notifications.
+- Refresh affected dashboards.
+
+Use confirmation dialogs for consequential actions.
+
+## Deficiency revert
+
+Build a complete revert workflow.
+
+When an officer clicks Revert Application:
+
+Open a modal containing:
+
+- Applicable APH clause selector.
+- Deficiency category.
+- Detailed explanation.
+- Required corrective action.
+- Supporting remarks.
+- Confirmation.
+
+Require an APH clause and an explanation exceeding 100 words, in accordance with the specification.
+
+On submission:
+
+- Change the stage to REVERTED.
+- Save the reason.
+- Add the deficiency to the institution portal.
+- Notify the institution.
+- Add an audit record.
+- Show the new status.
+
+Do not merely show a success toast without updating application data.
+
+---
+
+# 7. SLA MONITORING AND DELAY COST CALCULUS
+
+Create a complete SLA intelligence module.
+
+## SLA dashboard
+
+Show:
+
+- On-track applications.
+- Applications at risk.
+- Breached applications.
+- Average processing time.
+- Region-wise delay.
+- Stage-wise pendency.
+- SLA utilization.
+- High-priority work queue.
+
+Use these SLA visual thresholds:
+
+- Green: 0–74%.
+- Amber: 75–99%.
+- Red: 100% or higher.
+
+Display actual days remaining and days overdue.
+
+Implement date-based calculations instead of arbitrary visual percentages.
+
+## Delay Cost Calculus
+
+Use the specification's calculation model.
+
+Default constants:
+
+- Average annual fee: ₹1,20,000.
+- Average annual faculty salary: ₹8,00,000.
+
+Calculate institutional delay cost using the defined application intake, faculty count, fee, salary, and overdue days.
+
+The UI must display:
+
+"Estimated Institutional Cost of AICTE Pendency"
+
+Target demo value:
+
+₹1,40,00,000 (₹1.4 Cr).
+
+Provide:
+
+- Total cost.
+- Per-application cost.
+- Highest-cost delayed applications.
+- Cost by region.
+- Cost by application.
+- Responsible officer.
+- Days overdue.
+- Cost trend.
+
+Clicking the main cost metric must open a breakdown page.
+
+Use Indian number formatting.
+
+The number must come from the actual seeded data and calculation, not a hardcoded label disconnected from the underlying records.
+
+If the backend supplies a different verified value, display that value and explain the difference rather than silently falsifying the result.
+
+---
+
+# 8. REGIONAL PENDENCY INTELLIGENCE MAP
+
+Create a polished interactive India regional pendency map.
+
+Use D3 or an appropriate SVG-based visualization.
+
+Display:
+
+- Regional boundaries.
+- Region-level application counts.
+- Pending cases.
+- Average SLA delay.
+- Escalated cases.
+- Composite risk indicator.
+
+Use a clear risk color scale.
+
+Interactions:
+
+- Hover over a region to show a detailed tooltip.
+- Click a region to open its regional dashboard.
+- Drill down into applications.
+- Filter by region.
+- Switch between pending, overdue, and escalation views.
+- Show a legend.
+
+The map must display real demo records from the application dataset.
+
+Do not use a decorative image pretending to be an interactive map.
+
+---
+
+# 9. EVC TRAVEL CLUSTERING AND SCHEDULING
+
+This must be one of the strongest visual demonstrations.
+
+Implement the EVC operations module using Leaflet and FullCalendar, or compatible existing project dependencies.
+
+## EVC cluster map
+
+Display pending EVC institutions on an interactive map.
+
+Implement:
+
+- Institution markers.
+- Institution details on marker selection.
+- Cluster boundaries.
+- Cluster labels.
+- Proposed visit dates.
+- Committee details.
+- Travel grouping.
+
+Follow the specification:
+
+- K-Means-based institution clustering.
+- Group 3–4 institutions within a 50km radius.
+- Institutions outside the cluster radius become solo visits.
+- Create a cluster itinerary.
+
+Include the demo cluster:
+
+CLUSTER-PUNE-01
+
+Three institutions near Pune, within approximately 30km, should form a visible cluster.
+
+## Cluster generation
+
+The Generate Clusters button must actually execute clustering logic using the available institution coordinates.
+
+After generation:
+
+- Create cluster records.
+- Assign eligible institutions.
+- Display the cluster on the map.
+- Update EVC queues.
+- Generate proposed visit itineraries.
+- Display the resulting optimization summary.
+
+Do not simply animate a fake clustering result.
+
+## EVC calendar
+
+Create:
+
+- Month view.
+- Week view.
+- Day view.
+- Scheduled events.
+- Cluster events.
+- Expert availability.
+- Workload indicators.
+
+Implement drag-and-drop rescheduling where supported.
+
+After moving an event:
+
+- Ask for confirmation.
+- Update the event date.
+- Save the change.
+- Update the institution record.
+- Update the committee member's calendar.
+- Record the audit event.
+
+If an expert declines, show a functional reassignment workflow.
+
+---
+
+# 10. PARALLEL STAGE PRE-ACTIVATION
+
+Implement the signature parallel workflow feature.
+
+Trigger condition:
+
+When the current scrutiny stage reaches 75% of its SLA duration and defectCount is zero, the next eligible EVC stage becomes CONDITIONAL_ACTIVE.
+
+Demonstrate:
+
+1. Open an application.
+2. Show the Scrutiny stage as ACTIVE.
+3. Show its SLA utilization reaching 75%.
+4. Execute the eligibility check.
+5. Change the EVC stage to CONDITIONAL_ACTIVE.
+6. Show the EVC pipeline node change to amber.
+7. Display a pre-notification to the EVC member.
+8. Show the event in the EVC scheduling queue.
+
+Cancellation condition:
+
+If the preceding stage is rejected, the conditional stage must return to PENDING.
+
+Notify all affected EVC participants.
+
+Make this a genuine state transition, not just a glowing animation.
+
+Include a visible explanation of the eligibility condition and the resulting action.
+
+---
+
+# 11. INSTITUTIONAL COMPLIANCE GENOME
+
+Build a dedicated institution compliance intelligence page.
+
+Display:
+
+- Health score from 0–100.
+- Compliance history.
+- Late submissions.
+- Escalation count.
+- Total application cycles.
+- Undertaking performance.
+- Historical trend.
+
+Follow the specification's scoring formula:
+
+Health Score = 100 - (5 × late submissions) - (10 × escalation events)
+
+Floor the score at zero.
+
+Use the demo institution with:
+
+- Health score: 31/100.
+- Escalation count: 8.
+- Late submissions: 12.
+- Four application cycles.
+
+Display a clear visual score indicator and historical trend.
+
+The score must update when relevant compliance events change.
+
+Avoid presenting the score as an unexplained AI prediction. Clearly identify it as a rule-based compliance metric.
+
+---
+
+# 12. TIME-BOUND UNDERTAKINGS
+
+Create a complete undertaking management module.
+
+Officer functions:
+
+- Create an undertaking.
+- Assign it to an institution.
+- Set a due date.
+- Define its condition.
+- View submitted evidence.
+- Verify fulfillment.
+- Reject insufficient evidence with a reason.
+
+Institution functions:
+
+- View assigned undertakings.
+- See countdowns.
+- Upload evidence.
+- Submit fulfillment.
+- Track verification status.
+
+Statuses:
+
+- PENDING.
+- FULFILLED.
+- OVERDUE.
+
+Implement reminders at:
+
+- 30 days before due date.
+- 15 days before due date.
+- Due date.
+
+Apply the configured three-day grace period where relevant.
+
+## Compliance heatmap
+
+Display:
+
+- Institutions as rows.
+- Undertaking categories as columns.
+- Green: Fulfilled.
+- Amber: Due Soon.
+- Red: Overdue.
+
+Allow clicking a cell to inspect the actual undertaking.
+
+---
+
+# 13. DOCUMENT VALIDITY AND CONTINUITY
+
+Create a complete document management experience.
+
+Include:
+
+- Document upload.
+- File name.
+- Document category.
+- Institution.
+- Upload date.
+- Expiry date.
+- Verification status.
+- Document hash.
+- Renewal history.
+
+Implement real file selection and validation.
+
+When a document is uploaded:
+
+1. Validate the file type and size.
+2. Calculate SHA-256 where browser and backend architecture permit.
+3. Submit or store the document through the existing backend or demo adapter.
+4. Compare its hash with previous records.
+5. Display the resulting verification state.
+
+If the hash matches a prior cycle:
+
+Show:
+
+"Hash Matched — Verified Unchanged from [Year]"
+
+Only show this status when an actual matching hash is found.
+
+If the file differs, require normal verification.
+
+## Expiry calendar
+
+Display the next 12 months of document expiries.
+
+Provide:
+
+- Expiry date.
+- Institution.
+- Document type.
+- Days remaining.
+- Renewal status.
+- Alert status.
+
+Support filters and renewal actions.
+
+Expired documents must appear in the correct risk category.
+
+---
+
+# 14. MULTI-LEVEL ESCALATION CENTER
+
+Implement the complete five-level escalation model.
+
+| Level | Trigger | Recipient | Action |
+|---|---|---|---|
+| 1 | 75% SLA | Assigned Officer | In-app warning |
+| 2 | 100% SLA | Officer and Regional Officer | SMS/in-app alert |
+| 3 | SLA + 7 days | Regional Officer and Bureau Head | Executive escalation |
+| 4 | SLA + 14 days | Competent Authority | Formal intervention |
+| 5 | SLA + 21 days | Chairman's Office | Apex summary |
+
+Create a visual escalation timeline.
+
+Every escalation must display:
+
+- Application ID.
+- Institution.
+- Trigger date.
+- Current level.
+- Assigned recipient.
+- Acknowledgement status.
+- Last action.
+- Next escalation condition.
+
+## Acknowledge escalation
+
+The acknowledgement button must work.
+
+On click:
+
+- Open a confirmation dialog.
+- Display the escalation details.
+- Require a formal acknowledgement.
+- Request WebAuthn where available and correctly configured.
+- Use an explicitly labelled demo authentication fallback only when actual WebAuthn cannot be used.
+- Save the acknowledgement.
+- Record the timestamp.
+- Add an audit event.
+- Update the escalation status.
+
+Never pretend a biometric verification succeeded when it was not performed.
+
+## Auto-promotion
+
+If the required acknowledgement window expires, promote the escalation according to the configured rules.
+
+For the demo, provide a controlled simulation action to test the promotion logic.
+
+The simulation must execute the same underlying business logic as the actual escalation mechanism.
+
+---
+
+# 15. DEEMED APPROVAL RISK REGISTRY
+
+This is one of the most important differentiating features.
+
+Build a dedicated executive-level risk registry.
+
+Display:
+
+- Application ID.
+- Institution.
+- Region.
+- Days overdue.
+- Applicable processing stage.
+- Responsible officer.
+- Last action.
+- Risk priority.
+- Escalation level.
+- Legal review status.
+
+Risk levels:
+
+- LOW.
+- MEDIUM.
+- HIGH.
+- LEGAL_RISK.
+
+Include:
+
+- Search.
+- Filtering.
+- Sorting.
+- Detailed case view.
+- Timeline.
+- Legal notes.
+- Export action.
+
+The critical record must be:
+
+APP-8892
+
+Institution:
+
+Sri Venkateswara Engineering College
+
+State:
+
+Tamil Nadu
+
+Status:
+
+ESCALATED
+
+Days delayed:
+
+1
+
+Risk priority:
+
+LEGAL_RISK
+
+Clicking this record must open its complete application detail.
+
+Do not imply that the system automatically grants deemed approval. It identifies and monitors potential procedural and legal exposure.
+
+---
+
+# 16. REGULATORY PRECEDENT INTELLIGENCE
+
+Create a precedent intelligence panel on application detail pages.
+
+Show the five most similar historical cases.
+
+Each case must include:
+
+- Previous application ID.
+- Institution.
+- Region.
+- Application category.
+- Intake size.
+- Defect count.
+- Previous decision.
+- Similarity score.
+- Decision date.
+- Recorded decision reasoning.
+
+Follow the specification's four-dimensional feature vector:
+
+[RegionCode, CategoryCode, IntakeSize/100, DefectCount]
+
+Use the existing pgvector implementation if available.
+
+If not available, implement a deterministic, explainable local similarity function for the demo.
+
+Do not fabricate a machine-learning model or claim an external AI service is running when it is not.
+
+Display:
+
+"Decision support only — final regulatory authority remains with the competent officer."
+
+Selecting a precedent must open its details.
+
+---
+
+# 17. REJECTION REASON ENFORCER
+
+Build a structured rejection and revert process.
+
+Require:
+
+- Valid APH clause.
+- Explanation exceeding 100 words.
+- Supporting context.
+- Confirmation.
+
+Disable submission until the requirements are met.
+
+Show a clear validation message.
+
+After submission:
+
+- Update the application.
+- Save the reason.
+- Update the institution portal.
+- Notify the relevant institution.
+- Record the action in the audit ledger.
+
+Do not allow unexplained rejection actions.
+
+---
+
+# 18. WRIT PETITION OUTCOME REGISTRY
+
+Create a Legal Cell interface.
+
+Include:
+
+- Court name.
+- Application ID.
+- Filing date.
+- Outcome.
+- Risk pattern.
+- Citation.
+- Decision notes.
+
+Support:
+
+- Adding a case.
+- Editing permitted fields.
+- Updating outcome.
+- Searching cases.
+- Filtering by court and outcome.
+- Viewing related applications.
+
+Display a contextual warning when an officer's proposed decision resembles a documented reversed decision pattern.
+
+Do not invent court citations, judgments, or legal outcomes.
+
+Clearly mark fictional demo records as sample data.
+
+---
+
+# 19. SHA-256 AUDIT LEDGER
+
+This feature must be implemented as an actual audit mechanism.
+
+Record meaningful actions, including:
+
+- Login.
+- Application creation.
+- Application submission.
+- Document upload.
+- Stage progression.
+- Application revert.
+- Escalation creation.
+- Escalation acknowledgement.
+- EVC scheduling.
+- Undertaking fulfillment.
+- Undertaking verification.
+- Legal case updates.
+- Report exports.
+- Workflow configuration changes.
+
+Each audit record should display:
+
+- Actor.
+- Role.
+- Action.
+- Entity.
+- Timestamp.
+- Previous hash.
+- Current hash.
+
+Use the specification's chain concept:
+
+currentHash = SHA256(previousHash + action + actor + timestamp + JSON(payload))
+
+The audit ledger must be append-only from the application interface.
+
+Create a verification action.
+
+When selected:
+
+- Recalculate the chain.
+- Verify links.
+- Display whether the chain is intact.
+- Identify any invalid link if verification fails.
+
+The UI must distinguish actual cryptographic verification from a decorative green badge.
+
+---
+
+# 20. ONE-CLICK AUDIT PACKET EXPORT
+
+Build a real PDF export function.
+
+The generated PDF must contain:
+
+1. AICTE FlowGuard report header.
+2. Application information.
+3. Institution information.
+4. Current application status.
+5. Stage history.
+6. SLA information.
+7. Delay-cost calculation.
+8. Document records.
+9. Undertaking records.
+10. Escalation history.
+11. Relevant legal records.
+12. Audit ledger entries.
+13. SHA-256 hashes.
+14. Generated timestamp.
+
+Include:
+
+"DEMO DATA — FOR SYSTEM EVALUATION"
+
+where appropriate.
+
+The Export Complete Dossier button must:
+
+- Generate a real PDF.
+- Display a loading state.
+- Handle errors.
+- Download the file.
+- Use the selected application's actual records.
+
+Do not open a fake success modal instead of generating the file.
+
+---
+
+# 21. NOTIFICATION CENTER
+
+Create a working notification system.
+
+Include:
+
+- Notification bell.
+- Unread count.
+- Notification list.
+- Priority indicators.
+- Timestamps.
+- Related application.
+- Mark as read.
+- Mark all as read.
+- Navigation to the related record.
+
+Create notification categories:
+
+- Application updates.
+- SLA warnings.
+- Escalations.
+- EVC scheduling.
+- Document expiry.
+- Undertaking deadlines.
+- Compliance events.
+
+Notifications must appear after the relevant actions.
+
+If SMS, email, or external messaging is not configured, do not claim delivery.
+
+Show the actual delivery channel and status.
+
+---
+
+# 22. WORKFLOW CONFIGURATION STUDIO
+
+Build an admin-facing workflow editor.
+
+Display workflow stages as connected nodes.
+
+Support:
+
+- Adding stages.
+- Editing stage names.
+- Changing SLA durations.
+- Assigning responsible roles.
+- Connecting permitted next stages.
+- Removing unused stages.
+- Validating the graph.
+- Saving a new version.
+
+Prevent circular dependencies.
+
+When a workflow is updated:
+
+- Compare the previous and new configuration.
+- Identify affected in-progress applications.
+- Recalculate affected SLA positions.
+- Display the number of applications impacted.
+- Request confirmation.
+- Record the new version and audit event.
+
+Implement the demo scenario:
+
+Change Scrutiny SLA from 20 days to 15 days.
+
+Display the resulting impact across the 500 seeded applications.
+
+The specification's target scenario has five applications moving from ON_TRACK to AT_RISK.
+
+Use the actual calculated impact of the seeded dataset.
+
+---
+
+# 23. PREDICTIVE BOTTLENECK FORECAST
+
+Create a 30-day bottleneck intelligence dashboard.
+
+Use the specification's clearance velocity calculation:
+
+Clearance Velocity = Applications closed in the previous seven days / 7.
+
+Estimate projected backlog from current queue size and clearance velocity.
+
+Flag a bottleneck when projected clearance time exceeds the applicable SLA threshold.
+
+Display:
+
+- Region.
+- Stage.
+- Current queue.
+- Clearance velocity.
+- Projected backlog.
+- SLA threshold.
+- Risk status.
+
+Use clear charts with readable axes, useful tooltips, and understandable labels.
+
+Do not present invented predictions as verified AI output.
+
+Clearly label calculated projections and their assumptions.
+
+---
+
+# 24. DEMO DATA — CREATE A COHERENT OPERATIONAL ENVIRONMENT
+
+The application must not open with empty charts, zero records, placeholder text, or random-looking data.
+
+Create a reproducible demo dataset based on the specification.
+
+Target dataset:
+
+- 500 applications.
+- 300 institutions.
+- 300 precedent cases.
+- 200 APPROVED historical cases.
+- 70 REJECTED historical cases.
+- 30 CONDITIONAL historical cases.
+
+Application distribution:
+
+- 150 APPROVED / REJECTED historical applications.
+- 200 IN_PROGRESS applications in green SLA states.
+- 100 IN_PROGRESS applications in amber SLA states.
+- 50 ESCALATED applications.
+
+Critical demo record:
+
+APP-8892.
+
+The demo institution must have:
+
+- Compliance Genome: 31/100.
+- Late submissions: 12.
+- Escalation count: 8.
+- Four historical application cycles.
+
+Create coherent data relationships.
+
+An application must refer to a real institution in the demo dataset.
+
+An escalation must refer to an actual application stage.
+
+An undertaking must belong to an institution.
+
+An EVC schedule must reference an eligible application.
+
+A precedent must contain a meaningful decision and reason.
+
+Audit entries must refer to actual demo actions.
+
+Avoid unrelated random data.
+
+Use realistic Indian institutional names, regions, districts, dates, categories, and officer assignments.
+
+Do not use real people's personal information.
+
+Mark all fictional sample records as demonstration data.
+
+## Demo reset
+
+Provide a clearly labelled demo reset utility for authorized demo users.
+
+It should restore the original seeded state.
+
+It must not erase production data.
+
+It should be disabled or protected outside demo mode.
+
+The reset must be deterministic.
+
+---
+
+# 25. THE MOST IMPORTANT REQUIREMENT: EVERY INTERACTION MUST WORK
+
+Treat this as a strict acceptance condition.
+
+There must be no decorative controls pretending to be functional.
+
+For every visible control, define its action.
+
+Examples:
+
+**Sidebar navigation**
+- Opens the correct route.
+- Updates active navigation.
+- Preserves the current role's permissions.
+
+**Search**
+- Searches real available records.
+- Displays matching results.
+- Opens the selected result.
+
+**Filters**
+- Change the dataset displayed.
+- Work together.
+- Support reset.
+
+**Tables**
+- Sort.
+- Paginate.
+- Search.
+- Open records.
+- Perform authorized actions.
+
+**Forms**
+- Validate required inputs.
+- Display errors.
+- Submit data.
+- Persist successful changes.
+- Display meaningful feedback.
+
+**Modals**
+- Open and close correctly.
+- Validate content.
+- Confirm consequential operations.
+- Handle cancellation.
+
+**Charts**
+- Display actual demo metrics.
+- Support meaningful hover details.
+- Provide drill-down where relevant.
+
+**Calendar**
+- Change views.
+- Open events.
+- Reschedule events.
+- Persist changes.
+
+**Maps**
+- Show actual institution records.
+- Support marker selection.
+- Show cluster details.
+- Open related institution or application records.
+
+**Notifications**
+- Open.
+- Mark as read.
+- Navigate to the relevant entity.
+
+**Export**
+- Generate actual files.
+- Download successfully.
+
+**Workflow buttons**
+- Validate prerequisites.
+- Change state.
+- Update dependent records.
+- Add audit events.
+
+**Authentication**
+- Maintain role-specific sessions.
+- Prevent unauthorized access.
+- Logout correctly.
+
+If a function cannot be completed because a third-party integration is unavailable, implement a clearly labelled local demo simulation that exercises the same business logic.
+
+Never create a button that only displays "Coming Soon" when it is presented as a core working feature.
+
+Never show a successful action when the underlying operation failed.
+
+---
+
+# 26. DEMO MODE — MAKE THE APPLICATION REHEARSABLE
+
+Create a dedicated DEMO MODE.
+
+This is essential for reliable screen recording and jury demonstrations.
+
+The demo must not depend on unpredictable live clock changes, external SMS services, unstable APIs, or manual database manipulation during presentation.
+
+Implement:
+
+- Seeded initial data.
+- Persistent demo state.
+- Controlled scenario execution.
+- Deterministic workflow transitions.
+- Repeatable test cases.
+- Demo reset.
+- Clear sample-data labels.
+
+Provide an authorized demo control panel with scenario actions such as:
+
+1. Reset demo environment.
+2. Trigger SLA threshold.
+3. Simulate a breach.
+4. Execute escalation.
+5. Acknowledge escalation.
+6. Trigger parallel pre-activation.
+7. Generate EVC clusters.
+8. Complete an undertaking.
+9. Upload a sample document.
+10. Verify audit chain.
+11. Export audit packet.
+
+Each scenario action must execute the real local business logic and update the same shared demo state used by the rest of the application.
+
+Do not create separate fake animations disconnected from the data.
+
+Use a consistent simulated clock only where necessary for repeatable demo scenarios.
+
+Provide an easy way to return to the original seeded state.
+
+---
+
+# 27. END-TO-END JURY DEMONSTRATION FLOW
+
+The application must support the following complete demonstration.
+
+## SCENE 1 — Bureau Head Login
+
+Open the login page.
+
+Select the Bureau Head demo account.
+
+Authenticate.
+
+Show the executive dashboard.
+
+The first visible information should establish:
+
+- 500 applications.
+- ₹1.4 Cr estimated institutional delay cost.
+- Regional pendency.
+- Escalation risks.
+- Deemed Approval Risk Registry.
+
+## SCENE 2 — Open APP-8892
+
+Click APP-8892 from the risk dashboard.
+
+Open the detailed application record.
+
+Show:
+
+- Sri Venkateswara Engineering College.
+- Tamil Nadu.
+- ESCALATED status.
+- One day overdue.
+- LEGAL_RISK.
+- Assigned officer.
+- Current workflow stage.
+- Full timeline.
+
+The record must be navigable from the dashboard, not manually inserted into the URL.
+
+## SCENE 3 — Inspect Delay Cost
+
+Open the delay-cost breakdown.
+
+Show:
+
+- Calculation formula.
+- Application-level breakdown.
+- Institutional impact.
+- Responsible officer.
+- Days delayed.
+
+Return to the executive dashboard.
+
+## SCENE 4 — Inspect Precedent Intelligence
+
+Open the precedent panel.
+
+Display five similar historical cases.
+
+Open one case.
+
+Show the previous decision and recorded reasoning.
+
+Clearly communicate that the system supports human decision-making.
+
+## SCENE 5 — Inspect Institutional Compliance
+
+Open the institution's profile.
+
+Show:
+
+31/100 Compliance Genome.
+
+Show historical late submissions and escalations.
+
+Explain the score through its rule-based formula.
+
+## SCENE 6 — Parallel EVC Activation
+
+Switch to an eligible application.
+
+Open the workflow.
+
+Demonstrate the 75% SLA threshold.
+
+Execute the pre-activation condition.
+
+Show:
+
+Scrutiny = ACTIVE.
+
+EVC = CONDITIONAL_ACTIVE.
+
+Show the notification generated for the EVC team.
+
+## SCENE 7 — EVC Cluster Intelligence
+
+Open the cluster map.
+
+Show CLUSTER-PUNE-01.
+
+Select the cluster.
+
+Show the three institutions and their itinerary.
+
+Open the calendar.
+
+Reschedule a visit and confirm that the new date persists.
+
+## SCENE 8 — Escalation and Accountability
+
+Open the escalation center.
+
+Select a pending escalation.
+
+Acknowledge it.
+
+Show the updated acknowledgement state and corresponding audit entry.
+
+If demonstrating biometric verification, use the real configured mechanism or explicitly labelled demo fallback.
+
+## SCENE 9 — Audit Ledger
+
+Open the audit ledger.
+
+Run verification.
+
+Show the chain verification result.
+
+Open recent entries.
+
+Demonstrate that the earlier workflow actions have generated records.
+
+## SCENE 10 — Export Complete Dossier
+
+Open APP-8892.
+
+Click Export Complete Dossier.
+
+Generate the PDF.
+
+Download and open it.
+
+Show application details, workflow history, escalation history, and audit hashes.
+
+The entire sequence must work without manually editing database records between scenes.
+
+---
+
+# 28. IMPLEMENTATION ARCHITECTURE AND CODE QUALITY
+
+Use the existing stack where possible.
+
+The intended frontend stack is:
+
+- Next.js 14 App Router.
+- React.
+- TypeScript.
+- Tailwind CSS.
+- shadcn/ui.
+- Lucide icons.
+- Recharts or D3.
+- Leaflet.
+- FullCalendar.
+- React Hook Form.
+- Zod.
+- Framer Motion only for subtle interactions.
+- Sonner or an equivalent notification system.
+
+Keep the architecture modular.
+
+Suggested structure:
+
+app/
+  (auth)/
+  (dashboard)/
+    admin/
+    bureau/
+    regional/
+    evc/
+    institution/
+    legal/
+    authority/
+
+components/
+  layout/
+  navigation/
+  dashboard/
+  applications/
+  workflow/
+  sla/
+  evc/
+  compliance/
+  documents/
+  escalations/
+  legal/
+  audit/
+  charts/
+  maps/
+  tables/
+  forms/
+  shared/
+
+lib/
+  api/
+  auth/
+  permissions/
+  validation/
+  calculations/
+  workflow/
+  demo/
+  export/
+  audit/
+
+hooks/
+types/
+constants/
+
+Use a centralized API client.
+
+Use centralized permission checks.
+
+Use typed data models.
+
+Avoid large monolithic components.
+
+Avoid duplicating the same business logic in multiple pages.
+
+Create reusable table, filter, modal, status badge, metric card, timeline, and detail components.
+
+Keep business logic outside presentation components.
+
+Use clear error boundaries and loading states.
+
+Avoid unnecessary dependencies.
+
+Do not suppress TypeScript errors or disable lint rules simply to finish faster.
+
+---
+
+# 29. PERSISTENCE AND STATE CONSISTENCY
+
+The application must preserve state across navigation and refreshes.
+
+Use the existing backend and database whenever available.
+
+For local demo mode, use a reliable persistence adapter such as the existing backend, IndexedDB, or an appropriate local database approach.
+
+Do not rely exclusively on temporary React component state for important operations.
+
+When an action changes an application:
+
+- The application detail must update.
+- The application list must update.
+- The relevant dashboard metrics must update.
+- Notifications must update.
+- The audit ledger must update.
+- Related role views must reflect the change.
+
+For example:
+
+If a Regional Officer completes an undertaking, the Institution portal must show the updated undertaking status.
+
+If an Admin reschedules an EVC visit, the EVC Member calendar and institution view must show the same date.
+
+If an application is reverted, the Institution must see the deficiency.
+
+If an escalation is acknowledged, the Bureau Head dashboard must show the updated state.
+
+There must be one consistent source of truth for demo data.
+
+---
+
+# 30. HUMAN-CREATED PRODUCT DESIGN — STRICT VISUAL RULES
+
+The final product must NOT have the visual appearance of a generic AI-generated interface.
+
+Avoid these patterns:
+
+- Excessive gradient backgrounds.
+- Purple-blue AI gradients everywhere.
+- Glowing borders.
+- Floating glass cards.
+- Unnecessary decorative circles.
+- Randomly scattered metric cards.
+- Excessive pill-shaped buttons.
+- Huge empty hero sections.
+- Overly rounded cards.
+- Every section using the same card layout.
+- Fake terminal effects.
+- Random icons beside every heading.
+- Arbitrary chart colors.
+- Generic placeholder text.
+- Fake activity feeds.
+- Repeated lorem ipsum.
+- Nonsensical institution names.
+- Artificial-looking random numbers.
+- Unnecessary animations.
+- Decorative charts that do not represent actual data.
+
+Instead:
+
+- Use clear information hierarchy.
+- Align elements precisely.
+- Maintain consistent spacing.
+- Use realistic data density.
+- Prefer structured tables where operationally appropriate.
+- Use restrained borders and shadows.
+- Use meaningful icons only.
+- Make labels concise.
+- Use contextual descriptions.
+- Make complex information easy to scan.
+- Use charts only when they communicate something useful.
+- Maintain consistent status semantics.
+- Use natural enterprise software language.
+
+Design every screen as if a real government officer will use it for several hours each day.
+
+The product must look deliberately designed, not automatically assembled.
+
+---
+
+# 31. MICRO-INTERACTIONS AND RESPONSIVENESS
+
+Implement professional interaction details:
+
+- Hover states.
+- Focus states.
+- Active navigation states.
+- Loading indicators.
+- Skeleton loading.
+- Toast feedback.
+- Confirmation dialogs.
+- Inline validation.
+- Empty states.
+- Error states.
+- Success states.
+- Tooltips.
+- Table row selection.
+- Keyboard accessibility.
+- Responsive sidebar.
+- Responsive tables.
+- Smooth but restrained transitions.
+
+Do not animate everything.
+
+Animation should clarify state changes, not decorate the interface.
+
+Respect reduced-motion preferences.
+
+---
+
+# 32. SECURITY AND PERMISSION RULES
+
+Implement:
+
+- Role-based route protection.
+- Permission-based component visibility.
+- Backend authorization where available.
+- Institution data isolation.
+- Protected actions.
+- Input validation.
+- File validation.
+- Safe error messages.
+- Session handling.
+- Logout.
+- Audit logging.
+
+Do not assume hiding a button is sufficient authorization.
+
+Do not expose institution records to other institutions.
+
+Do not allow a Regional Officer to perform Bureau Head-only actions.
+
+Do not allow an EVC Member to access unrestricted administrative configuration.
+
+Keep the frontend and backend authorization rules consistent.
+
+---
+
+# 33. TESTING — DO NOT STOP AFTER THE UI LOOKS COMPLETE
+
+Run the application and test the actual workflows.
+
+Create a systematic acceptance checklist.
+
+Minimum required tests:
+
+1. Login as all supported roles.
+2. Verify role-specific redirects.
+3. Verify unauthorized route access is blocked.
+4. Create an application.
+5. Submit an application.
+6. Open application details.
+7. Verify stage prerequisite enforcement.
+8. Advance a valid stage.
+9. Revert an application with a valid clause and reason.
+10. Verify the institution receives the deficiency.
+11. Upload a document.
+12. Verify document hash handling.
+13. Verify document expiry display.
+14. Create an undertaking.
+15. Submit undertaking evidence.
+16. Verify an undertaking.
+17. Update Compliance Genome.
+18. Trigger parallel EVC pre-activation.
+19. Cancel pre-activation after rejection.
+20. Generate EVC clusters.
+21. Reschedule an EVC visit.
+22. Trigger an SLA warning.
+23. Trigger an escalation.
+24. Acknowledge an escalation.
+25. Verify role-specific notification delivery.
+26. Open the Deemed Approval Risk Registry.
+27. Search precedent cases.
+28. Add a legal case.
+29. Verify the audit hash chain.
+30. Export a PDF dossier.
+31. Reset demo data.
+32. Verify data consistency after refresh.
+
+Fix all critical issues before declaring the application complete.
+
+Check:
+
+- Browser console errors.
+- Failed network requests.
+- Broken navigation.
+- Hydration errors.
+- Invalid links.
+- Missing images.
+- Overflow.
+- Form validation.
+- Incorrect calculations.
+- Duplicate records.
+- Inconsistent status updates.
+
+Do not mark a feature complete merely because its page renders.
+
+---
+
+# 34. PERFORMANCE AND SCREEN-RECORDING READINESS
+
+Optimize the product for a smooth live demonstration.
+
+Requirements:
+
+- Fast initial login.
+- Responsive page transitions.
+- No unnecessary loading delays.
+- Stable dashboard rendering.
+- No layout shifts.
+- Charts render correctly.
+- Maps initialize correctly.
+- No broken external dependencies.
+- No accidental page reloads.
+- No unexpected popups.
+- No browser console errors.
+- Clear visual focus during interactions.
+
+Use sensible pagination and avoid rendering all 500 records in a single enormous table.
+
+Use readable dashboard spacing.
+
+Ensure the most important information is visible at normal laptop resolution.
+
+Do not require the presenter to scroll excessively during the primary demo.
+
+---
+
+# 35. IMPLEMENTATION EXECUTION STRATEGY
+
+Do not attempt to produce all screens in one uncontrolled coding pass.
+
+Work in controlled implementation phases.
+
+## PHASE 1 — Foundation
+
+- Repository inspection.
+- Design system.
+- Authentication.
+- Role permissions.
+- Global layout.
+- Sidebar.
+- Top navigation.
+- Shared components.
+- Demo persistence.
+
+Completion condition:
+
+All supported users can log in and see their correct navigation and dashboard.
+
+## PHASE 2 — Core Application Operations
+
+- Application list.
+- Application detail.
+- Workflow timeline.
+- Stage transitions.
+- Revert functionality.
+- SLA monitoring.
+- Notifications.
+
+Completion condition:
+
+An application can move through a valid workflow, and every change is persisted and auditable.
+
+## PHASE 3 — Accountability Intelligence
+
+- Delay Cost Calculus.
+- Deemed Approval Risk Registry.
+- Escalation Center.
+- Audit Ledger.
+- Precedent Intelligence.
+
+Completion condition:
+
+APP-8892 can be opened and examined through a complete accountability journey.
+
+## PHASE 4 — Compliance and EVC
+
+- Institution portal.
+- Compliance Genome.
+- Undertakings.
+- Document management.
+- EVC map.
+- EVC calendar.
+- Parallel pre-activation.
+
+Completion condition:
+
+Institution, officer, and EVC interactions remain consistent across roles.
+
+## PHASE 5 — Admin and Legal
+
+- Workflow Configuration.
+- Handbook Rules.
+- User Management.
+- Writ Petition Registry.
+- Bottleneck Forecast.
+- Reporting.
+- PDF export.
+
+Completion condition:
+
+Administrative and legal operations are functional.
+
+## PHASE 6 — Demo Hardening
+
+- Seed verification.
+- Scenario testing.
+- End-to-end testing.
+- UI polish.
+- Responsive testing.
+- Performance optimization.
+- Browser console cleanup.
+- Screen-recording rehearsal.
+
+Completion condition:
+
+The complete jury demo can be executed repeatedly from a clean demo state without manual code or database changes.
+
+---
+
+# 36. NON-NEGOTIABLE ENGINEERING RULES
+
+1. Do not create static mockup screens.
+2. Do not leave core buttons non-functional.
+3. Do not invent backend API routes.
+4. Do not replace working backend functionality.
+5. Do not hardcode dashboard numbers disconnected from demo data.
+6. Do not use unrelated random records.
+7. Do not fake biometric verification.
+8. Do not claim SMS or email delivery without an actual configured provider.
+9. Do not create fake AI outputs.
+10. Do not present sample legal data as real court records.
+11. Do not use success messages when an operation has failed.
+12. Do not allow unauthorized role access.
+13. Do not break existing routes.
+14. Do not use placeholder text in final screens.
+15. Do not leave broken navigation.
+16. Do not create duplicate business logic.
+17. Do not ignore browser errors.
+18. Do not finish after the first successful render.
+19. Do not sacrifice functionality for visual effects.
+20. Do not sacrifice usability for feature count.
+
+When an external dependency is unavailable, implement an honest, clearly labelled demo-mode substitute.
+
+---
+
+# 37. FINAL DELIVERABLES
+
+At completion, provide:
+
+1. Fully implemented frontend.
+2. Functional role-based navigation.
+3. Complete role-specific dashboards.
+4. Working application workflow.
+5. Functional SLA monitoring.
+6. Working delay-cost calculations.
+7. Functional EVC clustering and scheduling.
+8. Functional compliance and document workflows.
+9. Working escalation and acknowledgement.
+10. Deemed Approval Risk Registry.
+11. Precedent Intelligence.
+12. SHA-256 audit verification.
+13. Actual PDF dossier export.
+14. Persistent demo mode.
+15. Reproducible seed data.
+16. Demo reset utility.
+17. End-to-end test results.
+18. List of implemented features.
+19. List of incomplete integrations, if any.
+20. Exact instructions to run the project locally.
+
+Also provide a demo account reference for every role, using safe development-only credentials.
+
+Do not expose production secrets or credentials.
+
+---
+
+# 38. FINAL ACCEPTANCE STANDARD
+
+The project is complete only when the following statement is true:
+
+**A person unfamiliar with the codebase can open AICTE FlowGuard, log in as different authorized roles, navigate the application, search records, inspect an application, advance a workflow, trigger an escalation, acknowledge it, inspect compliance, generate EVC clusters, reschedule a visit, verify an audit chain, and download a real PDF dossier—all through the user interface, without manually editing the database or source code.**
+
+The UI must look like a professionally designed regulatory operations platform.
+
+The application must behave like a coherent software product.
+
+The demo must be repeatable.
+
+The data must be consistent.
+
+The actions must be real.
+
+The interface must be clean.
+
+The user experience must be predictable.
+
+**Build the actual product. Do not merely draw what the product is supposed to look like.**
+
+Begin by inspecting the repository, identifying the current implementation state, and producing a concise execution plan. Then implement the phases systematically, run the application, test every interaction, fix defects, and continue until the acceptance standard is met.

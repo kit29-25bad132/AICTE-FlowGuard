@@ -1,0 +1,6 @@
+{
+  "name": "AICTE FlowGuard",
+  "description": "Integrated regulatory workflow automation, institutional accountability, and EVC intelligence platform for AICTE Regulation Bureau.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
